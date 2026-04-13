@@ -126,13 +126,13 @@ if %errorlevel% equ 0 (
 )
 
 echo Launching emulator (this may take a minute)...
-start /B "Android Emulator" "%EMULATOR%" -avd "%CONFIG_AVD%" -no-audio -no-boot-anim
+set ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL=3
+start "Android Emulator" "%EMULATOR%" -avd "%CONFIG_AVD%" -no-audio -no-boot-anim
 
 echo.
-echo Emulator started in background.
+echo Emulator started in new window.
 echo Wait for it to fully boot (30-60 seconds).
 echo.
-pause
 goto MENU_MAIN
 
 REM ===================================================================
@@ -296,7 +296,8 @@ if "%CONFIG_AVD%"=="" (
     exit /b 1
 )
 echo Starting emulator: %CONFIG_AVD%
-start /B "Android Emulator" "%EMULATOR%" -avd "%CONFIG_AVD%" -no-audio -no-boot-anim
+set ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL=3
+start "Android Emulator" "%EMULATOR%" -avd "%CONFIG_AVD%" -no-audio -no-boot-anim
 echo Emulator started
 exit /b 0
 
