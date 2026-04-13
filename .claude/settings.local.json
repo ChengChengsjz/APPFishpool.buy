@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "*",
+      "Read(//e/Project/Programming/Project/STM32/**)",
+      "Bash(cp -r FishPool.buy FishPool.buy.backup)",
+      "Bash(mkdir -p Libraries/User/sys)",
+      "Bash(mv SYS/sys.c SYS/sys.h Libraries/User/sys/)",
+      "Bash(mv User/stm32f10x_it.c Src/)",
+      "Bash(mv User/stm32f10x_it.h User/stm32f10x_conf.h Inc/)",
+      "Bash(rm SYS/main.c.orig)",
+      "Bash(rmdir SYS)",
+      "Bash(rmdir User)",
+      "Bash(cube-cmake --version)",
+      "Bash(cube-cmake --preset debug)"
+    ]
+  }
+}

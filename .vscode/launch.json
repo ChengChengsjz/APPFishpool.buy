@@ -1,0 +1,37 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug MainActivity",
+            "request": "launch",
+            "mainClass": "cacom.example.smarthome.MainActivity",
+            "projectName": "app",
+            "cwd": "${workspaceFolder}",
+            "args": [],
+            "env": {
+                "ANDROID_HOME": "D:\\AndroidSDK"
+            }
+        },
+        {
+            "type": "java",
+            "name": "Attach to Android Process",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 5005,
+            "projectName": "app"
+        },
+        {
+            "name": "Run Android App",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "",
+            "args": [
+                "installDebug"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "preLaunchTask": "Gradle: Build Debug"
+        }
+    ]
+}

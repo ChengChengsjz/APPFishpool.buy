@@ -1,0 +1,54 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Gradle: Clean",
+            "type": "shell",
+            "command": "./gradlew clean",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Gradle: Build Debug",
+            "type": "shell",
+            "command": "./gradlew assembleDebug",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Gradle: Build Release",
+            "type": "shell",
+            "command": "./gradlew assembleRelease",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Gradle: Install Debug",
+            "type": "shell",
+            "command": "./gradlew installDebug",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Gradle: Run Tests",
+            "type": "shell",
+            "command": "./gradlew test",
+            "group": "test",
+            "problemMatcher": []
+        },
+        {
+            "label": "Gradle: Android Tests",
+            "type": "shell",
+            "command": "./gradlew connectedAndroidTest",
+            "group": "test",
+            "problemMatcher": []
+        },
+        {
+            "label": "Gradle: Sync Dependencies",
+            "type": "shell",
+            "command": "./gradlew app:dependencies",
+            "group": "build",
+            "problemMatcher": []
+        }
+    ]
+}

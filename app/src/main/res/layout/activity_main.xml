@@ -1,0 +1,1193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/backcloc"
+        android:orientation="vertical">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#626F8E">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="智能鱼缸"
+                android:textColor="#fff"
+                android:textSize="20sp" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:background="@drawable/backcloc"
+            android:layout_height="match_parent"
+            >
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"></View>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/backtext"
+                        android:elevation="8dp"
+
+                        android:layout_weight="1">
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="      浑浊度"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:textColor="#F3F3F6"/>
+
+
+                        <TextView
+                            android:id="@+id/Sensor4"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:progress="0"
+                            android:text="30°C"
+                            android:textColor="#263954"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+                    <ProgressBar
+                        android:id="@+id/ss1"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="200dp"
+                        android:progressDrawable="@drawable/backtext"
+                        android:max="100"
+                        android:progress="0"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_gravity="center"
+                        android:layout_height="10dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:background="@drawable/lin_shape"
+                        android:elevation="8dp"
+
+                        android:layout_weight="1">
+                        <TextView
+                            android:textStyle="bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="      光照度"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:textColor="#fff"/>
+                        <TextView
+                            android:id="@+id/Sensor3"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="30°C"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textColor="#263954"/>
+
+
+                    </LinearLayout>
+                    <ProgressBar
+                        android:id="@+id/ss2"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="200dp"
+                        android:progressDrawable="@drawable/backtext"
+                        android:max="100"
+                        android:progress="0"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_gravity="center"
+                        android:layout_height="10dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:background="@drawable/lin_shape"
+                        android:elevation="8dp"
+
+                        android:layout_weight="1">
+                        <TextView
+                            android:textStyle="bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="      水温"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:textColor="#fff"/>
+
+                        <TextView
+                            android:id="@+id/Sensor2"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="30°C"
+                            android:textColor="#263954"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+                    <ProgressBar
+                        android:id="@+id/ss3"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="200dp"
+                        android:progressDrawable="@drawable/backtext"
+                        android:max="100"
+                        android:progress="0"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_gravity="center"
+                        android:layout_height="10dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:background="@drawable/lin_shape"
+                        android:elevation="8dp"
+
+                        android:layout_weight="1">
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="      水位"
+                            android:textColor="#fff"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/Sensor1"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="30°C"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textColor="#263954"/>
+
+
+                    </LinearLayout>
+                    <ProgressBar
+                        android:id="@+id/ss4"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="200dp"
+                        android:progressDrawable="@drawable/backtext"
+                        android:max="14"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:progress="0"
+                        android:layout_gravity="center"
+                        android:layout_height="10dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:background="@drawable/lin_shape"
+                        android:elevation="8dp"
+
+                        android:layout_weight="1">
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="      PH"
+                            android:textColor="#fff"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/Sensor5"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="30°C"
+                            android:textColor="#263954"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+                    <ProgressBar
+                        android:id="@+id/ss5"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="200dp"
+                        android:progressDrawable="@drawable/backtext"
+                        android:max="14"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:progress="0"
+                        android:layout_gravity="center"
+                        android:layout_height="10dp" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:background="@drawable/lin_shape"
+                        android:elevation="8dp"
+
+                        android:layout_weight="1">
+                        <TextView
+                           android:id="@+id/zidong"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="自动"
+                            android:textStyle="bold"
+                            android:clickable="true"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:background="@drawable/onbanck"
+                            android:gravity="center"
+                            android:textColor="#263954"/>
+                        <TextView
+                            android:id="@+id/dingshi"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="定时"
+                            android:textStyle="bold"
+                            android:clickable="true"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:background="#768099"
+                            android:textColor="#263954"/>
+                        <TextView
+                            android:id="@+id/yuzhi"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="阈值"
+                            android:textStyle="bold"
+                            android:clickable="true"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:background="#768099"
+                            android:gravity="center"
+                            android:textColor="#263954"/>
+                        <TextView
+                            android:id="@+id/shoudong"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="手动"
+                            android:textStyle="bold"
+                            android:clickable="true"
+                            android:textSize="16sp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textColor="#263954"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/Mode1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="vertical">
+
+
+ <LinearLayout
+     android:id="@+id/onoroff"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="vertical"
+     >
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:layout_marginLeft="10dp"
+         android:layout_marginRight="10dp">
+
+         <TextView
+
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="center_vertical"
+             android:text="1.    加热"
+
+             android:textColor="#FFFFFF"
+             android:textSize="16sp"
+             android:textStyle="bold"></TextView>
+
+         <Switch
+             android:id="@+id/Switch1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:thumb="@drawable/setting_button_thumb"
+             android:track="@drawable/setting_button_track" />
+
+     </LinearLayout>
+
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:layout_marginLeft="10dp"
+         android:layout_marginRight="10dp">
+
+         <TextView
+
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="center_vertical"
+             android:text="2.    补水"
+             android:textColor="#FFFFFF"
+             android:textSize="16sp"
+             android:textStyle="bold"></TextView>
+
+         <Switch
+             android:id="@+id/Switch2"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:thumb="@drawable/setting_button_thumb"
+             android:track="@drawable/setting_button_track" />
+
+     </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:layout_marginLeft="10dp"
+         android:layout_marginRight="10dp">
+
+         <TextView
+
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="center_vertical"
+             android:text="3.    增氧"
+             android:textColor="#FFFFFF"
+             android:textSize="16sp"
+             android:textStyle="bold"></TextView>
+
+         <Switch
+             android:id="@+id/Switch3"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:thumb="@drawable/setting_button_thumb"
+             android:track="@drawable/setting_button_track" />
+
+     </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:layout_marginLeft="10dp"
+         android:layout_marginRight="10dp">
+
+         <TextView
+
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="center_vertical"
+             android:text="4.    换水"
+             android:textColor="#FFFFFF"
+             android:textSize="16sp"
+             android:textStyle="bold"></TextView>
+
+         <Switch
+             android:id="@+id/Switch4"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:thumb="@drawable/setting_button_thumb"
+             android:track="@drawable/setting_button_track" />
+
+     </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:layout_marginLeft="10dp"
+         android:layout_marginRight="10dp">
+
+         <TextView
+
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="center_vertical"
+             android:text="5.    投喂"
+             android:textColor="#FFFFFF"
+             android:textSize="16sp"
+             android:textStyle="bold"></TextView>
+
+         <Switch
+             android:id="@+id/Switch5"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:thumb="@drawable/setting_button_thumb"
+             android:track="@drawable/setting_button_track" />
+
+     </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:layout_marginLeft="10dp"
+         android:layout_marginRight="10dp">
+
+         <TextView
+
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="center_vertical"
+             android:text="6.    灯光"
+             android:textColor="#FFFFFF"
+             android:textSize="16sp"
+             android:textStyle="bold"></TextView>
+
+         <Switch
+             android:id="@+id/Switch6"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:thumb="@drawable/setting_button_thumb"
+             android:track="@drawable/setting_button_track" />
+
+     </LinearLayout>
+
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="50dp"
+         android:layout_marginLeft="10dp"
+         android:layout_marginRight="10dp">
+
+         <TextView
+
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="center_vertical"
+             android:text="7.    蜂鸣器"
+             android:textColor="#FFFFFF"
+             android:textSize="16sp"
+             android:textStyle="bold"></TextView>
+
+         <Switch
+             android:id="@+id/Switch7"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:thumb="@drawable/setting_button_thumb"
+             android:track="@drawable/setting_button_track" />
+
+     </LinearLayout>
+ </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Mode2"
+                    android:layout_width="match_parent"
+
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_height="50dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="1.    水温阈值"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_weight="1">
+                        </TextView>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:minWidth="130dp">
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/jj_shape"
+                                android:layout_height="30dp">
+
+                                <ImageView
+                                    android:id="@+id/Sensor1down"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/jian" />
+                            </LinearLayout>
+                            <TextView
+                                android:id="@+id/Sensor1_Threshold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="1"
+                                android:textStyle="bold"
+                                android:textColor="#1A1F27"
+                                android:gravity="center"
+                                android:minWidth="30dp"/>
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/jj_shape"
+                                android:layout_height="30dp">
+                                <ImageView
+                                    android:id="@+id/Sensor1add"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/jia"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_height="50dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="2.    水位阈值"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_weight="1">
+                        </TextView>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:minWidth="130dp">
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/jj_shape"
+                                android:layout_height="30dp">
+                                <ImageView
+                                    android:id="@+id/Sensor2down"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/jian"/>
+                            </LinearLayout>
+                            <TextView
+                                android:id="@+id/Sensor2_Threshold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="1"
+                                android:textStyle="bold"
+                                android:textColor="#1A1F27"
+                                android:gravity="center"
+                                android:minWidth="30dp"/>
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/jj_shape"
+                                android:layout_height="30dp">
+                                <ImageView
+                                    android:id="@+id/Sensor2add"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/jia"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_height="50dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="3.    光照阈值"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_weight="1">
+                        </TextView>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:minWidth="130dp">
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/jj_shape"
+                                android:layout_height="30dp">
+                                <ImageView
+                                    android:id="@+id/Sensor3down"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/jian"/>
+                            </LinearLayout>
+                            <TextView
+                                android:id="@+id/Sensor3_Threshold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="1"
+                                android:textStyle="bold"
+                                android:textColor="#1A1F27"
+                                android:gravity="center"
+                                android:minWidth="30dp"/>
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/jj_shape"
+                                android:layout_height="30dp">
+                                <ImageView
+                                    android:id="@+id/Sensor3add"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/jia"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_height="50dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="4.    浊度阈值"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_weight="1">
+                        </TextView>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:minWidth="130dp">
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/jj_shape"
+                                android:layout_height="30dp">
+
+                                <ImageView
+                                    android:id="@+id/Sensor4down"
+                                    android:layout_width="30dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/jian" />
+                            </LinearLayout>
+                            <TextView
+                                android:id="@+id/Sensor4_Threshold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="1"
+                                android:textStyle="bold"
+                                android:textColor="#1A1F27"
+                                android:gravity="center"
+                                android:minWidth="30dp"/>
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/jj_shape"
+                                android:layout_height="30dp">
+                                <ImageView
+                                    android:id="@+id/Sensor4add"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/jia"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_height="50dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="5.    PH上限"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:minWidth="130dp">
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/jj_shape"
+                                android:layout_height="30dp">
+
+                                <ImageView
+                                    android:id="@+id/Sensor8down"
+                                    android:layout_width="30dp"
+                                    android:layout_height="20dp"
+                                    android:src="@mipmap/jian" />
+                            </LinearLayout>
+                            <TextView
+                                android:id="@+id/Sensor5_Threshold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="1"
+                                android:textStyle="bold"
+                                android:textColor="#1A1F27"
+                                android:gravity="center"
+                                android:minWidth="30dp"/>
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/jj_shape"
+                                android:layout_height="30dp">
+                                <ImageView
+                                    android:id="@+id/Sensor8add"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/jia"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_height="50dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="6.    PH下限"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:minWidth="130dp">
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/jj_shape"
+                                android:layout_height="30dp">
+                                <ImageView
+                                    android:id="@+id/Sensor9down"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/jian"/>
+                            </LinearLayout>
+                            <TextView
+                                android:id="@+id/Sensor6_Threshold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="1"
+                                android:textStyle="bold"
+                                android:textColor="#1A1F27"
+                                android:gravity="center"
+                                android:minWidth="30dp"/>
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:gravity="center"
+                                android:background="@drawable/jj_shape"
+                                android:layout_height="30dp">
+
+                                <ImageView
+                                    android:id="@+id/Sensor9add"
+                                    android:layout_width="25dp"
+                                    android:layout_height="30dp"
+                                    android:src="@mipmap/jia" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:id="@+id/Mode3"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical">
+
+                        <View
+                            android:layout_width="10dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/item_shape"></View>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="定时"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <Switch
+                            android:id="@+id/GoTimeFlag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"
+                            android:text="投喂/增氧"
+                            android:textColor="#FFFFFF"
+                            android:thumb="@drawable/setting_button_thumb"
+                            android:track="@drawable/setting_button_track" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="定时开关"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+
+                        <Switch
+                            android:id="@+id/TimeFlag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:text="关/开"
+                            android:textColor="#FFFFFF"
+                            android:thumb="@drawable/setting_button_thumb"
+                            android:track="@drawable/setting_button_track" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="1.    时"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:minWidth="130dp">
+
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/jj_shape"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:id="@+id/Sensor5down"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/jian" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/Sensor6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:minWidth="30dp"
+                                android:textStyle="bold"
+                                android:textColor="#1A1F27"
+                                android:text="1" />
+
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/jj_shape"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:id="@+id/Sensor5add"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/jia" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="2.    分"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:minWidth="130dp">
+
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/jj_shape"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:id="@+id/Sensor6down"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/jian" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/Sensor7"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:textStyle="bold"
+                                android:minWidth="30dp"
+                                android:textColor="#1A1F27"
+                                android:text="1" />
+
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/jj_shape"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:id="@+id/Sensor6add"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/jia" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="3.    秒"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:minWidth="130dp">
+
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+
+                                android:gravity="center">
+
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/Sensor8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:minWidth="30dp"
+                                android:textStyle="bold"
+                                android:textColor="#1A1F27"
+                                android:text="1" />
+
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+
+                                android:gravity="center">
+
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="4.    时长"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold"></TextView>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:minWidth="130dp">
+
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/jj_shape"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:id="@+id/Sensor7down"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/jian" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/GOTIME"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:minWidth="30dp"
+                                android:textStyle="bold"
+                                android:textColor="#1A1F27"
+                                android:text="1" />
+
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/jj_shape"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:id="@+id/Sensor7add"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:src="@mipmap/jia" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
