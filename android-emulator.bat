@@ -2,7 +2,7 @@
 REM ===================================================================
 REM Android Emulator Manager - Final Working Version
 REM Author: Claude Code
-REM Version: 2.3 (Bug Fix: CPU Input Crash)
+REM Version: 2.2 (Hardware Configuration Enhanced)
 REM Date: 2026-04-14
 REM ===================================================================
 
@@ -310,305 +310,79 @@ cls
 echo ============================================
 echo     Configure Emulator Hardware
 echo ============================================
-echo.
 
-call :LOAD_CONFIG
-if "%CONFIG_AVD%"=="" (
-    echo No emulator device configured.
-    echo Please configure an emulator device first.
-    ping -n 2 127.0.0.1 >nul
-    goto MENU_MAIN
+REM Get device list
+set /a "N=0"
+for /f "delims=" %%i in ('"%EMULATOR%" -list-avds 2^>nul') do (
+    set /a N+=1
+    set "DEV_!N!=%%i"
 )
-
-echo Currently configured emulator: %CONFIG_AVD%
-echo.
-set /p MODIFY_CURRENT="Modify this emulator? (Y/N): "
-if /i not "%MODIFY_CURRENT%"=="Y" (
-    goto SELECT_AVD_FOR_HARDWARE
-)
-set "SELECTED_AVD=%CONFIG_AVD%"
-goto LOAD_AVD_CONFIG
-
-:SELECT_AVD_FOR_HARDWARE
-REM Get list of AVDs
-set AVDS[0]=0
-set COUNT=0
-for /f "tokens=*" %%i in ('"%EMULATOR%" -list-avds 2^>nul') do (
-    set /a COUNT+=1
-    set "CLEAN_AVD=%%i"
-    set "CLEAN_AVD=!CLEAN_AVD: =!"
-    for /f "delims=" %%c in ("!CLEAN_AVD!") do set "CLEAN_AVD=%%c"
-    echo !COUNT!. !CLEAN_AVD!
-    set "AVDS[!COUNT!]=!CLEAN_AVD!"
-)
-
-if %COUNT% equ 0 (
+if !N! equ 0 (
     echo No emulator devices found.
     ping -n 2 127.0.0.1 >nul
     goto MENU_MAIN
 )
 
 echo.
-set /p AVD_CHOICE="Select device (1-%COUNT%): "
+for /l %%i in (1,1,%N%) do echo   %%i. !DEV_%%i!
+echo.
 
-if "%AVD_CHOICE%"=="" (
-    echo No selection made.
-    ping -n 2 127.0.0.1 >nul
-    goto SELECT_AVD_FOR_HARDWARE
-)
+:hw_sel_dev
+set /p "C=Select device (1-%N%): "
+set /a C=%C% 2>nul
+if !C! lss 1 goto hw_sel_dev
+if !C! gtr %N% goto hw_sel_dev
+set "SELECTED=!DEV_%C%!"
+echo Selected: !SELECTED!
 
-REM Validate selection
-set /a AVD_CHOICE=%AVD_CHOICE% 2>nul
-if %AVD_CHOICE% lss 1 (
-    echo Invalid selection.
-    ping -n 2 127.0.0.1 >nul
-    goto SELECT_AVD_FOR_HARDWARE
-)
-if %AVD_CHOICE% gtr %COUNT% (
-    echo Invalid selection.
-    ping -n 2 127.0.0.1 >nul
-    goto SELECT_AVD_FOR_HARDWARE
-)
-
-REM Get selected AVD
-for /l %%i in (1,1,%COUNT%) do (
-    if %AVD_CHOICE% equ %%i (
-        set "SELECTED_AVD=!AVDS[%%i]!"
+REM Read config
+set "CFG=%USERPROFILE%\.android\avd\!SELECTED!.avd\config.ini"
+set "CUR_CPU=2"
+set "CUR_RAM=2048"
+set "CUR_VRAM=64"
+if exist "%CFG%" (
+    for /f "tokens=1,2 delims==" %%a in ('type "%CFG%"') do (
+        if "%%a"=="hw.cpu.ncore" set "CUR_CPU=%%b"
+        if "%%a"=="hw.ramSize" set "CUR_RAM=%%b"
+        if "%%a"=="hw.gpu.vramSize" set "CUR_VRAM=%%b"
     )
 )
-
-REM Remove spaces from AVD name
-set "SELECTED_AVD=!SELECTED_AVD: =!"
-REM Remove all control characters
-for /f "delims=" %%c in ("!SELECTED_AVD!") do set "SELECTED_AVD=%%c"
-
-:LOAD_AVD_CONFIG
-echo.
-echo Selected emulator: !SELECTED_AVD!
+echo Current: CPU=!CUR_CPU!, RAM=!CUR_RAM!MB, VRAM=!CUR_VRAM!MB
 echo.
 
-REM Build config.ini path
-set "AVD_CONFIG_PATH=%USERPROFILE%\.android\avd\!SELECTED_AVD!.avd\config.ini"
-if not exist "!AVD_CONFIG_PATH!" (
-    echo Config file not found: !AVD_CONFIG_PATH!
-    echo Please ensure the emulator exists.
-    ping -n 2 127.0.0.1 >nul
-    goto MENU_MAIN
-)
+REM Input CPU
+:hw_in_cpu
+set /p "V=CPU cores (1-16) [!CUR_CPU!]: "
+if "!V!"=="" set "V=!CUR_CPU!"
+call :check_num !V! 1 16 CPU || goto hw_in_cpu
+set "F_CPU=!RET!"
 
-REM Read current values with safe validation
-set "CURRENT_CPU=2"
-set "CURRENT_RAM=2048"
-set "CURRENT_VRAM=64"
+REM Input RAM
+:hw_in_ram
+set /p "V=RAM MB (512-24576) [!CUR_RAM!]: "
+if "!V!"=="" set "V=!CUR_RAM!"
+call :check_num !V! 512 24576 RAM || goto hw_in_ram
+set "F_RAM=!RET!"
 
-if exist "!AVD_CONFIG_PATH!" (
-    echo [DEBUG] Reading config file: !AVD_CONFIG_PATH!
-    for /f "tokens=1,2 delims==" %%a in ('type "!AVD_CONFIG_PATH!" 2^>nul') do (
-        if "%%a"=="hw.cpu.ncore" (
-            set "TEMP_CPU=%%b"
-            REM Clean value: remove spaces, CR, LF
-            set "TEMP_CPU=!TEMP_CPU: =!"
-            set "TEMP_CPU=!TEMP_CPU: =!"
-            REM Simple numeric check without pipes
-            set "IS_NUM=1"
-            for /f "delims=0123456789" %%c in ("!TEMP_CPU!") do set "IS_NUM=0"
-            if "!IS_NUM!"=="1" (
-                set /a "TEST_VAL=!TEMP_CPU!" 2>nul
-                if "!TEST_VAL!" neq "" (
-                    if !TEST_VAL! geq 1 if !TEST_VAL! leq 16 (
-                        set "CURRENT_CPU=!TEMP_CPU!"
-                    )
-                )
-            )
-        )
-        if "%%a"=="hw.ramSize" (
-            set "TEMP_RAM=%%b"
-            REM Clean value: remove spaces, CR, LF
-            set "TEMP_RAM=!TEMP_RAM: =!"
-            set "TEMP_RAM=!TEMP_RAM: =!"
-            REM Simple numeric check without pipes
-            set "IS_NUM=1"
-            for /f "delims=0123456789" %%c in ("!TEMP_RAM!") do set "IS_NUM=0"
-            if "!IS_NUM!"=="1" (
-                set /a "TEST_VAL=!TEMP_RAM!" 2>nul
-                if "!TEST_VAL!" neq "" (
-                    if !TEST_VAL! geq 512 if !TEST_VAL! leq 24576 (
-                        set "CURRENT_RAM=!TEMP_RAM!"
-                    )
-                )
-            )
-        )
-        if "%%a"=="hw.gpu.vramSize" (
-            set "TEMP_VRAM=%%b"
-            REM Clean value: remove spaces, CR, LF
-            set "TEMP_VRAM=!TEMP_VRAM: =!"
-            set "TEMP_VRAM=!TEMP_VRAM: =!"
-            REM Simple numeric check without pipes
-            set "IS_NUM=1"
-            for /f "delims=0123456789" %%c in ("!TEMP_VRAM!") do set "IS_NUM=0"
-            if "!IS_NUM!"=="1" (
-                set /a "TEST_VAL=!TEMP_VRAM!" 2>nul
-                if "!TEST_VAL!" neq "" (
-                    if !TEST_VAL! geq 16 if !TEST_VAL! leq 8192 (
-                        set "CURRENT_VRAM=!TEMP_VRAM!"
-                    )
-                )
-            )
-        )
-    )
-    REM Final defaults configured above
-)
-
-echo Current hardware configuration:
-echo   CPU Cores: !CURRENT_CPU!
-echo   RAM Size (MB): !CURRENT_RAM!
-echo   VRAM Size (MB): !CURRENT_VRAM!
-echo.
-
-REM Input CPU cores
-:INPUT_CPU
-set /p NEW_CPU="Enter CPU cores (1-16, default !CURRENT_CPU!): "
-if "!NEW_CPU!"=="" set "NEW_CPU=!CURRENT_CPU!"
-
-REM Remove leading/trailing spaces
-set "NEW_CPU=!NEW_CPU: =!"
-
-REM Check if input contains only digits (safe method without pipes)
-set "IS_NUMERIC=1"
-for /f "delims=0123456789" %%c in ("!NEW_CPU!") do set "IS_NUMERIC=0"
-
-if "!IS_NUMERIC!"=="0" (
-    echo Invalid CPU cores. Must contain only numbers (0-9).
-    ping -n 2 127.0.0.1 >nul
-    goto INPUT_CPU
-)
-
-REM Convert to number safely
-set /a "CPU_VALUE=!NEW_CPU!" 2>nul
-if "!CPU_VALUE!"=="" (
-    echo Invalid CPU cores. Cannot convert to number.
-    ping -n 2 127.0.0.1 >nul
-    goto INPUT_CPU
-)
-
-REM Check range
-if !CPU_VALUE! lss 1 (
-    echo CPU cores must be at least 1.
-    ping -n 2 127.0.0.1 >nul
-    goto INPUT_CPU
-)
-if !CPU_VALUE! gtr 16 (
-    echo CPU cores must not exceed 16.
-    ping -n 2 127.0.0.1 >nul
-    goto INPUT_CPU
-)
-
-REM Use validated value
-set "NEW_CPU=!CPU_VALUE!"
-
-REM Input RAM size
-:INPUT_RAM
-set /p NEW_RAM="Enter RAM size in MB (512-24576, default !CURRENT_RAM!): "
-if "!NEW_RAM!"=="" set "NEW_RAM=!CURRENT_RAM!"
-
-REM Remove leading/trailing spaces
-set "NEW_RAM=!NEW_RAM: =!"
-
-REM Check if input contains only digits (safe method without pipes)
-set "IS_NUMERIC=1"
-for /f "delims=0123456789" %%c in ("!NEW_RAM!") do set "IS_NUMERIC=0"
-
-if "!IS_NUMERIC!"=="0" (
-    echo Invalid RAM size. Must contain only numbers (0-9).
-    ping -n 2 127.0.0.1 >nul
-    goto INPUT_RAM
-)
-
-REM Convert to number safely
-set /a "RAM_VALUE=!NEW_RAM!" 2>nul
-if "!RAM_VALUE!"=="" (
-    echo Invalid RAM size. Cannot convert to number.
-    ping -n 2 127.0.0.1 >nul
-    goto INPUT_RAM
-)
-
-REM Check range
-if !RAM_VALUE! lss 512 (
-    echo RAM size must be at least 512 MB.
-    ping -n 2 127.0.0.1 >nul
-    goto INPUT_RAM
-)
-if !RAM_VALUE! gtr 24576 (
-    echo RAM size must not exceed 24576 MB (24GB).
-    ping -n 2 127.0.0.1 >nul
-    goto INPUT_RAM
-)
-
-REM Use validated value
-set "NEW_RAM=!RAM_VALUE!"
-
-REM Input VRAM size
-:INPUT_VRAM
-set /p NEW_VRAM="Enter VRAM size in MB (16-8192, default !CURRENT_VRAM!): "
-if "!NEW_VRAM!"=="" set "NEW_VRAM=!CURRENT_VRAM!"
-
-REM Remove leading/trailing spaces
-set "NEW_VRAM=!NEW_VRAM: =!"
-
-REM Check if input contains only digits (safe method without pipes)
-set "IS_NUMERIC=1"
-for /f "delims=0123456789" %%c in ("!NEW_VRAM!") do set "IS_NUMERIC=0"
-
-if "!IS_NUMERIC!"=="0" (
-    echo Invalid VRAM size. Must contain only numbers (0-9).
-    ping -n 2 127.0.0.1 >nul
-    goto INPUT_VRAM
-)
-
-REM Convert to number safely
-set /a "VRAM_VALUE=!NEW_VRAM!" 2>nul
-if "!VRAM_VALUE!"=="" (
-    echo Invalid VRAM size. Cannot convert to number.
-    ping -n 2 127.0.0.1 >nul
-    goto INPUT_VRAM
-)
-
-REM Check range
-if !VRAM_VALUE! lss 16 (
-    echo VRAM size must be at least 16 MB.
-    ping -n 2 127.0.0.1 >nul
-    goto INPUT_VRAM
-)
-if !VRAM_VALUE! gtr 8192 (
-    echo VRAM size must not exceed 8192 MB (8GB).
-    ping -n 2 127.0.0.1 >nul
-    goto INPUT_VRAM
-)
-
-REM Use validated value
-set "NEW_VRAM=!VRAM_VALUE!"
+REM Input VRAM
+:hw_in_vram
+set /p "V=VRAM MB (16-8192) [!CUR_VRAM!]: "
+if "!V!"=="" set "V=!CUR_VRAM!"
+call :check_num !V! 16 8192 VRAM || goto hw_in_vram
+set "F_VRAM=!RET!"
 
 echo.
-echo New configuration:
-echo   CPU Cores: !NEW_CPU!
-echo   RAM Size: !NEW_RAM! MB
-echo   VRAM Size: !NEW_VRAM! MB
-echo.
-set /p CONFIRM="Apply these changes? (Y/N): "
-if /i not "!CONFIRM!"=="Y" (
-    echo Changes cancelled.
-    ping -n 2 127.0.0.1 >nul
-    goto MENU_MAIN
+echo Apply: CPU=!F_CPU!, RAM=!F_RAM!MB, VRAM=!F_VRAM!MB
+set /p "OK=Apply? (Y/N): "
+if /i "!OK!"=="Y" (
+    call :save_avd "!SELECTED!" "hw.cpu.ncore" "!F_CPU!"
+    call :save_avd "!SELECTED!" "hw.ramSize" "!F_RAM!"
+    call :save_avd "!SELECTED!" "hw.gpu.vramSize" "!F_VRAM!"
+    echo Hardware configuration updated!
+    echo Please restart the emulator for changes to take effect.
+) else (
+    echo Cancelled.
 )
-
-REM Update config.ini
-call :UPDATE_CONFIG "!AVD_CONFIG_PATH!" "hw.cpu.ncore" "!NEW_CPU!"
-call :UPDATE_CONFIG "!AVD_CONFIG_PATH!" "hw.ramSize" "!NEW_RAM!"
-call :UPDATE_CONFIG "!AVD_CONFIG_PATH!" "hw.gpu.vramSize" "!NEW_VRAM!"
-
-echo.
-echo Hardware configuration updated successfully!
-echo Please restart the emulator for changes to take effect.
 ping -n 2 127.0.0.1 >nul
 goto MENU_MAIN
 
@@ -703,6 +477,38 @@ if "!KEY_FOUND!"=="0" (
 REM Replace original file
 move /y "!CONFIG_FILE_TEMP!" "%~1" >nul
 exit /b
+
+:check_num
+REM Usage: call :check_num VALUE MIN MAX NAME
+REM Returns: RET=validated number, or error + exit 1
+set "X=%~1"
+if "%X%"=="" (echo ERROR: %~4 is empty&exit /b 1)
+set "X=%X: =%"
+set "ISNUM=1"
+for /f "delims=0123456789" %%c in ("%X%") do set "ISNUM=0"
+if "!ISNUM!"=="0" (echo ERROR: %~4 must be a number: %X%&exit /b 1)
+set /a "NUM=%X%" 2>nul
+if errorlevel 1 (echo ERROR: %~4 conversion failed: %X%&exit /b 1)
+if %NUM% lss %~2 (echo ERROR: %~4 must be ^>= %~2&exit /b 1)
+if %NUM% gtr %~3 (echo ERROR: %~4 must be ^<= %~3&exit /b 1)
+set "RET=%NUM%"
+exit /b 0
+
+:save_avd
+REM Usage: call :save_avd AVD_NAME KEY VALUE
+set "S_CFG=%USERPROFILE%\.android\avd\%~1.avd\config.ini"
+set "S_KEY=%~2"
+set "S_VAL=%~3"
+set "S_TMP=%S_CFG%.tmp"
+set "S_FOUND=0"
+(
+    for /f "tokens=1* delims==" %%a in ('type "%S_CFG%"') do (
+        if "%%a"=="%S_KEY%" (echo %S_KEY%=%S_VAL%&set "S_FOUND=1") else (echo %%a=%%b)
+    )
+    if "!S_FOUND!"=="0" echo %S_KEY%=%S_VAL%
+) > "%S_TMP%"
+move /y "%S_TMP%" "%S_CFG%" >nul
+exit /b 0
 
 REM ===================================================================
 REM End of Script
