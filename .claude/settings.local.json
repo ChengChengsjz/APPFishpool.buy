@@ -12,7 +12,16 @@
       "Bash(rmdir SYS)",
       "Bash(rmdir User)",
       "Bash(cube-cmake --version)",
-      "Bash(cube-cmake --preset debug)"
+      "Bash(cube-cmake --preset debug)",
+      "Bash(./gradlew clean:*)",
+      "Bash(tasklist)",
+      "Bash(findstr /i gradle)",
+      "Bash(timeout 10)",
+      "Bash(./gradlew --version)",
+      "Bash(./gradlew assembleDebug --no-daemon)",
+      "Bash(dir app\\\\build\\\\outputs\\\\apk\\\\debug\\\\app-debug.apk)",
+      "Bash(dir \"app\\\\build\\\\outputs\\\\apk\\\\debug\\\\app-debug.apk\")",
+      "Bash(adb devices:*)"
     ]
   }
 }

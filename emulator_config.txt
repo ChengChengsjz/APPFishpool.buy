@@ -1,0 +1,1 @@
+AVD=Pixel_Fold_API_36

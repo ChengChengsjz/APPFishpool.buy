@@ -2,7 +2,7 @@
     "java.configuration.updateBuildConfiguration": "automatic",
     "java.import.gradle.enabled": true,
     "java.import.gradle.wrapper.enabled": true,
-    "java.import.gradle.version": "8.0",
+    "java.import.gradle.version": "7.6.4",
     "java.jdt.ls.vmargs": "-Xmx2G",
     "java.compile.nullAnalysis.mode": "automatic",
     "java.project.sourcePaths": ["app/src/main/java"],
@@ -25,5 +25,5 @@
     "editor.formatOnSave": true,
     "java.format.settings.url": ".vscode/java-formatter.xml",
     "xml.format.enabled": true,
-    "android-sdk.path": "D:\\AndroidSDK"
+    "android-sdk.path": "C:\\Users\\ChengCheng\\AppData\\Local\\Android\\Sdk"
 }
